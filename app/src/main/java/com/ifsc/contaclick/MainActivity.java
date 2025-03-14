@@ -2,35 +2,43 @@ package com.ifsc.contaclick;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
+public class MainActivity extends AppCompatActivity {
 
     TextView textView;
-    int contador = 0;
+    Button button;
+    long contador = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textView = findViewById(R.id.textView);
 
+        textView = findViewById(R.id.textView);
+        button = findViewById(R.id.button);
+
+        // Ouvinte de clique para o textView
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                contador ++;
-                textView.setText(Integer.toString(contador));
+                contador++;
+                textView.setText(Long.toString(contador));
+            }
+        });
+
+        // Ouvinte de clique para o button
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                contador = Math.round(Math.random() * 10); // Gera um número aleatório entre 0 e 10
+                textView.setText(Long.toString(contador));
             }
         });
     }
-    public void onClick(View v) {
 
-    }
-
+    // O método onClick foi removido, pois não é necessário
 }
